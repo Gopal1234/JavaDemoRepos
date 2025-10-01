@@ -1,0 +1,119 @@
+1.You need to build a Spring Boot REST API to manage students in a college.
+
+The data should be stored in an postgresSql database.
+
+Requirements
+
+create layered structure 
+inside model layer---create Student class as per the given json details
+inside service layer---create StudentInterface and define all expected method as the given requirements
+inside dao layer--implement all service methods
+inside controller layer--define all endpoints
+
+
+
+Add a new Student
+
+Endpoint: POST /students
+
+Request body:
+
+{
+  "id": 1,
+  "name": "Amit Sharma",
+  "age": 20,
+  "course": "Computer Science"
+}
+
+
+Store student in a collection.
+
+Get all Students
+
+Endpoint: GET /students
+
+Return the list of all students.
+
+Get Student by ID
+
+Endpoint: GET /students/{id}
+
+Return student details if found, otherwise return 404.
+
+Update Student
+
+Endpoint: PUT /students/{id}
+
+Update an existing student’s details in the collection.
+
+Delete Student
+
+Endpoint: DELETE /students/{id}
+
+Remove student from collection.
+
+Additional features:
+
+Filter students by course
+GET /students/course/{courseName}
+
+Get students above a certain age
+GET /students/age/{minAge}
+
+Sort students by age
+GET /students/sort/age
+
+______________________________________________________________________________________
+
+
+2.Develop a  Hospital Management System (HMS) backend using Spring Boot and Spring Data JPA that allows registration of patients, management of doctors, and booking of appointments.
+The system should ensure data validation, prevent invalid operations (like double-booking), and return consistent error messages using global exception handling.
+
+📌 Modules (only important ones)
+1. Patient Management
+
+Register new patients with details: name, email, phone, date of birth.
+
+Update and fetch patient information.
+
+Search patient by name/email.
+
+Validation Rules:
+
+name → @NotBlank
+
+email → @Email
+
+phone → @Pattern(regexp="^[0-9]{10}$")
+
+dob → @Past
+
+2. Doctor Management
+
+Register doctors with details: name, specialty, email, consultation fee.
+
+List all doctors or search by specialty.
+
+Validation Rules:
+
+name → @NotBlank
+
+specialty → @NotBlank
+
+email → @Email
+
+consultationFee → @Min(100)
+
+3. Appointment Scheduling
+
+Book an appointment between a patient and a doctor at a given date/time.
+
+Prevent double-booking: doctor cannot have two appointments at the same time.
+
+Cancel or reschedule appointments.
+
+Validation Rules:
+
+appointmentDateTime → @Future
+
+durationMinutes → @Min(15)
